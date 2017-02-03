@@ -32,7 +32,17 @@
 
 	<script>
 		var UsersModule = (function($) {
+				// PRIVATE METHODS
+				//=======================================
+				function _bindTemplate(templateID, data, containerID) {
+					var source = $(templateID).html();
+					var template = Handlebars.compile(source);
+					var html = template(data);
+					$(containerID).html(html);
+				};
 
+				// PUBLIC METHODS
+				//=======================================
 				// Get all the users from database on page load
 				function getAllUsers() {
 					
@@ -42,22 +52,18 @@
 					}) // Transform the data into json
 					.then(function(data) {
 						// Your code for handling the data you get from the API
-						console.log("Fetch Data :", data);
-						var source = $("#entry-template").html();
-						var template = Handlebars.compile(source);
-						var html = template(data);
-						$('#sample-data').append(html);
+						_bindTemplate("#entry-template", data, '#sample-data');
 					})
 					.catch(function() {
 						// This is where you run code if the server returns any errors
 					});
 				};
 
-				function addUser() {
+				// Create New User
+				function createUser() {
 					// process the form to save data into database
-					$('#addSnippetform').submit(function(event) {
-						// stop the form from submitting the normal way and refreshing the page
-						event.preventDefault();
+					//$('#addSnippetform').submit(function(event) {
+						
 
 						// get the form data
 						// there are many ways to get this data using jQuery (you can use the class or id also)
@@ -66,8 +72,6 @@
 							'email': $('input[name=email]').val(),
 							'dateCreated': new Date().getTime()
 						};
-
-
 
 						// process the form
 						$.ajax({
@@ -79,24 +83,22 @@
 						})
 						// using the done promise callback
 						.done(function(data) {
-
-							// log data to the console so we can see
-							console.log(data);
-							var source = $("#entry-template").html();
+							_bindTemplate("#entry-template", data.snippet, '#sample-data');
+							/*var source = $("#entry-template").html();
 							var template = Handlebars.compile(source);
 							var html = template(data.snippet);
-							$('#sample-data').append(html);
-							// here we will handle errors and validation messages
+							$('#sample-data').append(html);*/
 						});
-					});					
+					//});					
 				};
-
+				
 				function removeUser(id) {
 					// url (required), options (optional)
 					fetch('/snippets/deleteSnippet/'+id, {
 						method: 'DELETE'
 					}).then(function(response) {
 						console.log("User Deleted with ID :", id, response);
+						getAllUsers();
 					}).catch(function(err) {
 						// Error :(
 						console.log("Error :", err);
@@ -105,7 +107,7 @@
 
 				return {
 					getAllUsers : getAllUsers,
-					addUser: addUser,
+					createUser: createUser,
 					removeUser: removeUser
 				}
 
@@ -117,7 +119,15 @@
 
 			$('#sample-data').on('click', '.delete-user', function(){
 				var id= $(this).data('user-id');
-				deleteUser(id);
+				UsersModule.removeUser(id);
+				UsersModule.getAllUsers();
+			});
+
+			$('#addSnippetform').submit(function(event) {
+				// stop the form from submitting the normal way and refreshing the page
+				event.preventDefault();
+				UsersModule.createUser();
+				UsersModule.getAllUsers();
 			});
 		});
 	</script>
