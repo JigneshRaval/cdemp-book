@@ -23,7 +23,7 @@ db.snippets.ensureIndex({ fieldName: 'name' }, function (err) {
 const SnippetsModel = (function(){
 
 	function getAll(callback) {
-		db.snippets.find({}, function(err, docs){
+		db.snippets.find({}).sort({ dateCreated: -1 }).exec(function(err, docs){
 			if(callback && typeof callback === 'function'){
 				callback({"snippets" : docs});
 			}

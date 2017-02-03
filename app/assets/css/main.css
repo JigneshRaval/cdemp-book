@@ -13,7 +13,14 @@ body {
 	margin-bottom: 2em;
 	background-color: #EEE;
 }
-
+.c-user-form label {
+	display: inline-block;
+	width: 200px;
+}
+.c-user-form input[type="text"] {
+	width: 200px;
+	padding: 5px;
+}
 .c-user-list {
 	margin: 0;
 	padding: 0;
