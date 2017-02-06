@@ -30,20 +30,87 @@ body {
 .c-user-list li {
 	border: 1px solid #CCC;
 	padding: 1em;
-	margin-bottom: 0.5em;
+	margin-bottom: 1.5em;
 }
 
 .c-user-list li:hover {
 	box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.2);
 	transition: all 0.2s linear;
 }
-
-.c-user-list li a {
-	float: right;
-	display: inline-block;
-	padding: 5px;
-	background: #4498ff;
-	color: #FFF;
-	vertical-align: top;
-	margin-top: -5px;
+.c-user-list li .c-user-list__item__name {
+	font-size: 16px;
 }
+.c-user-list li .c-user-image {
+    background-color: #CCC;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    border-radius: 100%;
+	vertical-align: middle;
+}
+/**
+ * USER PROFILE
+ */
+.user-profile { 
+	width: 400px; 
+	border: 1px solid #3498db; 
+	margin: 0 auto; 
+}
+.user-profile__title { 
+	margin: 0;
+	padding: 1em 1.5em; 
+	background-color: #3498db; 
+	color: #FFF; 
+}
+.user-profile__detail { 
+	padding: 1.5em; 
+}
+
+/**
+ * BUTTONS
+ */
+.btn { 
+	display: inline-block;
+	line-height: normal;	
+	border-radius: 3px;
+}
+.btn-small {
+	padding: 5px 15px;
+}
+.btn-medium {
+	padding: 10px 20px;
+}
+.btn-large {
+	padding: 15px 25px;
+}
+.btn-primary {
+	border: 1px solid #3498db;
+}
+.btn-primary:hover {
+	color: #FFF;
+	background-color: #3498db;
+	border: 1px solid #1577b9;
+}
+
+/**
+ * GLOBAL STYLE
+ */
+a { 
+	text-decoration: none;
+}
+* { 
+	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+h3 { margin: 0;}
+/**
+ * UTILITY CLASSES
+ */
+.tc { text-align: center; }
+.tr { text-align: right; }
+.c-flex-container { 
+	display: flex;
+	flex-wrap: wrap;
+}
+.c-flex-container__item {flex-grow: 0;}

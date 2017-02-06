@@ -7,7 +7,6 @@ const app     	= express();
 const port    	= process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
-
 // ROUTES
 // ==============================================
 
@@ -20,20 +19,20 @@ app.use(express.static(__dirname));
 
 console.log("Directory Name in Server.js :", __dirname);
 
-// Redirect Page to http://localhost:3000/snippets
+// Redirect Page to http://localhost:3000/users
 app.get('/', function(req, res) {
-    res.redirect('/snippets');
+    res.redirect('/users');
 });
 
 // On page load serve index.html file
-app.get('/snippets', function(req, res) {
-    res.sendFile(__dirname + '/app/components/snippets/index.html', function(){
+app.get('/users', function(req, res) {
+    res.sendFile(__dirname + '/app/components/users/index.html', function(){
 		console.log("Sending file..");
 	});
 });
 
 // Import router for Snippets
-app.use('/snippets', require('./app/components/snippets/router'));
+app.use('/users', require('./app/components/users/router'));
 
 // START THE SERVER
 // ==============================================
