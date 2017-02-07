@@ -1,9 +1,12 @@
+// model.js
+
 // USER MODEL
-//=================================
+// All the Database Operations will be handled by this file
+//============================================================
 
-const db = require('../../config/db.config');
+const db = require('../../config/db.config'); // Load Database File
 
-const SnippetsModel = (function(){
+const UserModel = (function(){
 	
 	// GET ALL USER
 	function getAll(searchTerm, callback) {
@@ -67,4 +70,4 @@ const SnippetsModel = (function(){
 	}
 })();
 
-module.exports = SnippetsModel;
+module.exports = UserModel;
