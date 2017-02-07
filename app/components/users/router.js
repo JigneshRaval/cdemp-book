@@ -11,10 +11,25 @@ const router = require('express').Router(),
 	fs = require('fs');
 
 // route middleware that will happen on every request
+/*
 router.use(function(req, res, next){
 	console.log("users router.js --> ", req.method, req.url);
 	next();
 });
+*/
+
+// Applying middleware to all routes in the router
+router.use(function (req, res, next) {
+	console.log("Inner Router.js ---> :", req.session, req.session.user);
+
+	if (req.session.user) {
+		next();
+	} 
+	else {
+		req.session.error = 'Access denied!';
+		res.redirect('/');
+	}
+})
 
 // ALL USER :: Send Response
 //==============================================

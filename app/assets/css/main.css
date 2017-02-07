@@ -17,10 +17,6 @@ body {
 	display: inline-block;
 	width: 200px;
 }
-.c-user-form input[type="text"] {
-	width: 200px;
-	padding: 5px;
-}
 .c-user-list {
 	margin: 0;
 	padding: 0;
@@ -65,11 +61,18 @@ body {
 .user-profile__detail { 
 	padding: 1.5em; 
 }
-
+header {
+	border-bottom: 1px solid #CCC;
+	padding: 5px;
+}
+.container-fixed {
+	width: 80%;
+	margin: 0 auto;
+}
 /**
  * BUTTONS
  */
-.btn { 
+.btn, button { 
 	display: inline-block;
 	line-height: normal;	
 	border-radius: 3px;
@@ -104,11 +107,31 @@ a {
     padding: 0;
 }
 h3 { margin: 0;}
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
+	width: 200px;
+	padding: 5px;
+}
+.form-group { padding: 5px;}
 /**
  * UTILITY CLASSES
  */
 .tc { text-align: center; }
 .tr { text-align: right; }
+.fl { 
+	float: left;
+}
+.fr {
+	float: right;
+}
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
 .c-flex-container { 
 	display: flex;
 	flex-wrap: wrap;

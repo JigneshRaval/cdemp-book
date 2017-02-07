@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8" />
+		<title>Home</title>
+		<link rel="stylesheet" href="app/assets/build/styles/styles.css" />
+		<link rel="stylesheet" href="app/assets/css/main.css" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<header>
+			<div class="container-fixed cf">
+				<a href="/logout" class="btn btn-small fr">Logout</a>
+			</div>
+		</header>
+		<div class="main-body">
+			
+			<h1>Login</h1>
+			
+			<div class="c-user-form">
+				<form id="addSnippetform">
+					<div class="form-group">
+						<label for="userId">User Name</label>
+						<input type="text" name="userId" class="form-control" id="userId" placeholder="User Name or Id" required/>
+					</div>
+					<div class="form-group">
+						<label for="userPassword">Password</label>
+						<input type="password" name="userPassword" class="form-control" id="userPassword" placeholder="password" required/>
+					</div>
+					<button type="submit" class="btn btn-small btn-primary" id="submit">Login</button>
+				</form>
+			</div>
+			
+		</div>
+		
+		<script src="app/assets/build/scripts/script.js"></script>
+		<script src="app/components/login/login-controller.js"></script>
+		
+	</body>
+	
+</html>

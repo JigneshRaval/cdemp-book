@@ -68,12 +68,19 @@ const SnippetsModel = (function(){
 		});
 	};
 
+	function findUser(username, callback) {
+		db.snippets.find({"name" : username}, function(err, doc){
+			callback(doc[0]) 	// This sends data as an array which is not required for Single record so used [0]
+		});
+	};
+
 	// Return all Public Methods
 	return {
-		getAll : getAll,
-		createUser : createUser,
-		getSingleUser: getSingleUser,
-		removeUser: removeUser
+		getAll			: getAll,
+		createUser		: createUser,
+		getSingleUser	: getSingleUser,
+		removeUser		: removeUser,
+		findUser		: findUser
 	}
 })();
 
