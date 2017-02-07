@@ -44,6 +44,9 @@ app.get('/login', function (req, res) {
 	}	
 });
 
+// TODO : Two things are not working 
+// 1. After Login page is not redirecting to USERS page
+// 2. User is not passing into authenticate function
 app.post('/login', function(req, res){
 	AuthModule.authenticate(req.body.username, req.body.password, function(err, user){
 		if (user) {
@@ -55,7 +58,7 @@ app.post('/login', function(req, res){
 				// or in this case the entire user object
 				req.session.user = user;
 				console.log("req.session.user", req.session.user);
-				req.session.success = 'Authenticated as ' + user.name
+				req.session.success = 'Authenticated as ' + user
 				+ ' click to <a href="/logout">logout</a>. '
 				+ ' You may now access <a href="/restricted">/restricted</a>.';
 				// Sending Data From SERVER using Handlebars

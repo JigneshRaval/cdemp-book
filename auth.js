@@ -1,6 +1,7 @@
 const express 	= require('express');
 const app     	= express();
 const SnippetsModel = require('./app/components/users/model');
+const db = require('./app/config/db.config');
 
 let user;
 
@@ -20,32 +21,22 @@ let user;
 var AuthModule = (function(){
 
     // Authenticate using our plain-object database of doom!
-    function authenticate(name, pass, fn) {
+    function authenticate(name, pass, callback) {
         if (!module.parent) console.log('authenticating %s:%s', name, pass);
-        
-        
+       /*
         SnippetsModel.findUser(name, function(data){
-            console.log("UUU :", data);
             if(data) {
                 user = data.name;
             }            
         });
-        console.log("UUU 2 :", user);
+        */
+        db.snippets.find({"name" : name}, function(err, doc){
+            user = doc[0].name;
+			callback(null, user);
+		});
 
         // query the db for the given username
-        if (!user) return fn(new Error('cannot find user'));
-
-        fn(null, user);
-
-        //fn(new Error('cannot find user'), user);
-        // apply the same algorithm to the POSTed password, applying
-        // the hash against the pass / salt, if there is a match we
-        // found the user
-        /*hash(pass, user.salt, function(err, hash){
-            if (err) return fn(err);
-            if (hash.toString() == user.hash) return fn(null, user);
-            fn(new Error('invalid password'));
-        })*/
+        if (!user) return callback(new Error('cannot find user'));
     };
 
     function restrict(req, res, next) {

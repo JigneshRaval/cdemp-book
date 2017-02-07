@@ -10,14 +10,6 @@ const router = require('express').Router(),
 	Handlebars = require('handlebars'),
 	fs = require('fs');
 
-// route middleware that will happen on every request
-/*
-router.use(function(req, res, next){
-	console.log("users router.js --> ", req.method, req.url);
-	next();
-});
-*/
-
 // Applying middleware to all routes in the router
 router.use(function (req, res, next) {
 	console.log("Inner Router.js ---> :", req.session, req.session.user);
@@ -31,7 +23,7 @@ router.use(function (req, res, next) {
 	}
 })
 
-// ALL USER :: Send Response
+// GET ALL USER :: Send Response
 //==============================================
 router.get('/all', function(req, res) {
 	SnippetsModel.getAll(req.query.searchTerm, function(snippets){
@@ -39,7 +31,7 @@ router.get('/all', function(req, res) {
 	});
 });
 
-// SINGLE USER :: Send Response
+// GET SINGLE USER :: Send Response
 //==============================================
 router.get('/:id', function(req, res){
 	SnippetsModel.getSingleUser(req.params.id, function(data){
