@@ -1,6 +1,6 @@
 // model.js
 
-// USER MODEL
+// USER DATA MODEL
 // All the Database Operations will be handled by this file
 //============================================================
 
@@ -68,6 +68,7 @@ const UserModel = (function(){
 		removeUser		: removeUser,
 		findUser		: findUser
 	}
+	
 })();
 
 module.exports = UserModel;

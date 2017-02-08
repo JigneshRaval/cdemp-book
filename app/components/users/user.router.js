@@ -1,4 +1,5 @@
 // router.js
+// USER ROUTER
 //===================================
 
 // This is server side Router using Express.js
@@ -13,6 +14,7 @@ const router 		= require('express').Router(),
 // Applying middleware to all routes in the router
 router.use(function (req, res, next) {
 	if (req.session.user) {
+		console.log(new Date(), req.method, req.url);
 		next();
 	} 
 	else {
@@ -21,8 +23,19 @@ router.use(function (req, res, next) {
 	}
 })
 
+// GET Route for Page : http://localhost:3000/users
+//==============================================
+
+router.get('/', function(req, res) {
+	console.log("Inside User Router :", __dirname + './index.html', path.join(__dirname, './index.html'))
+    res.sendFile(path.join(__dirname, './index.html'), function(){
+		console.log("Sending Users file..");
+	});
+});
+
 // GET ALL USER :: Send Response
 //==============================================
+
 router.get('/all', function(req, res) {
 	UserModel.getAll(req.query.searchTerm, function(users){
 		res.send(users);
@@ -31,6 +44,7 @@ router.get('/all', function(req, res) {
 
 // GET SINGLE USER :: Send Response as HTML
 //==============================================
+
 router.get('/:id', function(req, res){
 	UserModel.getSingleUser(req.params.id, function(data){
 		
@@ -46,6 +60,7 @@ router.get('/:id', function(req, res){
 
 // CREATE USER :: Send Response
 //==============================================
+
 router.post('/createUser', function(req, res){
 	UserModel.createUser(req.body, function(user){
 		res.send(user);
@@ -54,7 +69,8 @@ router.post('/createUser', function(req, res){
 
 // REMOVE USER :: Send Response
 //==============================================
-router.delete('/removeUser/:id', function(req, res){
+
+router.get('/removeUser/:id', function(req, res){
 	UserModel.removeUser(req.params.id, function(snippet){
 		res.send("User with id "+req.params.id+" has been removed successfully");
 	});

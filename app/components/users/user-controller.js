@@ -72,15 +72,16 @@ var UsersModule = (function($) {
 	
 	// REMOVE USER
 	function removeUser(id) {
-		// url (required), options (optional)
-		fetch('/users/removeUser/'+id, {
-			method: 'DELETE'
-			}).then(function(response) {
-			console.log("User Deleted with ID :", id, response);
+		$.ajax({
+			type: 'GET',
+			url: '/users/removeUser/'+id,
+			dataType: 'json',
+			encode: true
+		})
+		// using the done promise callback
+		.done(function(data) {
+			console.log("User Deleted with ID :", id, data);
 			getAllUsers();
-			}).catch(function(err) {
-			// Error :(
-			console.log("Error :", err);
 		});
 	};
 	
