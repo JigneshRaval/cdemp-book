@@ -1,3 +1,8 @@
+html {
+	height: 100%;
+	background-image: url(../images/02-cup-window.jpg);
+	background-size: cover;
+}
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
@@ -8,14 +13,17 @@ body {
 	margin: 0 auto;
 }
 .c-user-form {
-	border: 1px solid #CCC;
-	padding: 1.5em;
+	margin: 0 auto;
 	margin-bottom: 2em;
-	background-color: #EEE;
+	background-color: #FFF;
+	box-shadow: 1px 0px 20px 4px rgba(0,0,0,0.2);
+	width: 300px;
 }
 .c-user-form label {
-	display: inline-block;
-	width: 200px;
+    display: block;
+    width: 200px;
+    padding: 5px 0;
+	color: #999;
 }
 .c-user-list {
 	margin: 0;
@@ -75,6 +83,7 @@ header {
 .btn, button { 
 	display: inline-block;
 	line-height: normal;	
+	border: 0px solid #1577b9;
 	border-radius: 3px;
 }
 .btn-small {
@@ -94,7 +103,14 @@ header {
 	background-color: #3498db;
 	border: 1px solid #1577b9;
 }
-
+.btn-full {width: 100%;}
+.btn-grd1 {
+	color: #FFF;
+	background: #ba66a1;
+background: -moz-linear-gradient(left, #ba66a1 0%, #325dbc 100%);
+background: -webkit-linear-gradient(left, #ba66a1 0%,#325dbc 100%);
+background: linear-gradient(to right, #ba66a1 0%,#325dbc 100%);
+}
 /**
  * GLOBAL STYLE
  */
@@ -108,10 +124,10 @@ a {
 }
 h3 { margin: 0;}
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
-	width: 200px;
-	padding: 5px;
+	width: 100%;
+	padding: 10px;
 }
-.form-group { padding: 5px;}
+.form-group { padding: 5px 0;}
 /**
  * UTILITY CLASSES
  */
@@ -135,5 +151,14 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
 .c-flex-container { 
 	display: flex;
 	flex-wrap: wrap;
+	height: 100vh;
+	align-items: center;
 }
 .c-flex-container__item {flex-grow: 0;}
+.grd1 {
+	background: #e570e7;
+background: -moz-radial-gradient(center, ellipse cover, #e570e7 0%, #7267ea 100%);
+background: -webkit-radial-gradient(center, ellipse cover, #e570e7 0%,#7267ea 100%);
+background: radial-gradient(ellipse at center, #e570e7 0%,#7267ea 100%);
+background-repeat: no-repeat;
+}

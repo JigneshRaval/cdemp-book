@@ -6,21 +6,24 @@
 		<title>Home</title>
 		<link rel="stylesheet" href="app/assets/build/styles/styles.css" />
 		<link rel="stylesheet" href="app/assets/css/main.css" />
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 	</head>
 	
-	<body>
-		<header>
+	<body class="">
+		<!--<header>
 			<div class="container-fixed cf">
 				<a href="/logout" class="btn btn-small fr">Logout</a>
 			</div>
-		</header>
-		<div class="main-body">
+		</header>-->
+		<div class="c-flex-container" style="background-color: rgba(0,0,0,0.5);">
 			
-			<h1>Login</h1>
 			
-			<div class="c-user-form">
-				<form id="addSnippetform">
+			
+			<div class="c-user-form c-flex-container__item">
+				<h1 class="tc" style="font-weight: 300;color: #CCC;
+    background-color: #323a45;
+    padding: 0.5em 1em;">Sign In</h1>
+				<form id="addSnippetform" style="padding: 2em;">
 					<div class="form-group">
 						<label for="userId">User Name</label>
 						<input type="text" name="userId" class="form-control" id="userId" placeholder="User Name or Id" required/>
@@ -29,7 +32,7 @@
 						<label for="userPassword">Password</label>
 						<input type="password" name="userPassword" class="form-control" id="userPassword" placeholder="password" required/>
 					</div>
-					<button type="submit" class="btn btn-small btn-primary" id="submit">Login</button>
+					<button type="submit" class="btn btn-large btn-grd1 btn-full" id="submit">Login</button>
 				</form>
 			</div>
 			
