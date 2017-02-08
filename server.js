@@ -2,6 +2,7 @@
 
 // BASE SETUP
 // ==============================================
+
 const express		= require('express');
 const app			= express();
 const port			= process.env.PORT || 3000;
@@ -32,6 +33,7 @@ app.use('/users', require('./app/components/users/user.router'));
 
 // TEMPLATE ENGINE
 // ==============================================
+
 app.engine('tpl', function (filePath, options, callback) { // define the template engine
 	fs.readFile(filePath, function (err, content) {
 		if (err) return callback(err)
@@ -50,6 +52,7 @@ app.use(express.static(__dirname));
 
 // START THE SERVER
 // ==============================================
+
 app.listen(port, function() {
 	console.log('Express server started on PORT :' + port);
 });
