@@ -29,7 +29,24 @@ var UsersModule = (function($) {
 	/**
 	 * Get all the users from database on page load
 	 */
-	function getAllUsers() {					
+	function getAllUsers() {
+		// url (required), options (optional)
+		/*
+		fetch('/snippets/all') // Call the fetch function passing the url of the API as a parameter
+		.then(function(resp) {
+			return resp.json()
+		}) // Transform the data into json
+		.then(function(data) {
+			console.log(JSON.parse(data));
+			// Your code for handling the data you get from the API
+			//_bindTemplate("#entry-template", data, '#sample-data');
+		})
+		.catch(function(errors) {
+			// This is where you run code if the server returns any errors
+			console.log(errors);
+		});
+		*/
+
 		$.ajax({
 			type: 'GET', 		// define the type of HTTP verb we want to use (POST for our form)
 			url: '/users/all', 	// the url where we want to POST

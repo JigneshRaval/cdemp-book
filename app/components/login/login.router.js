@@ -27,9 +27,18 @@ router.get('/login', function (req, res) {
 		res.redirect('/users');
 	}
 	else {
-		res.sendFile(path.join(__dirname, './login.html'), function(){
-			console.log("Sending Login file..");
+		// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
+		res.render('login',{
+			body : "<p>Test Body</p>", 
+			data : {"name":"hiren"}, 
+			error: ""
 		});
+
+		// Use response.sendFile when you are only using pure HTML file instead of 
+		// any Templating Engine listed above
+		/*res.sendFile(path.join(__dirname, './login.html'), function(){
+			console.log("Sending Login file..");
+		});*/
 	}	
 });
 
@@ -42,10 +51,12 @@ router.post('/login', function(req, res){
 	db.snippets.find({"name" : req.body.username}, function(err, doc){
 		if (doc.length === 0 || !doc) {
 			req.session.error = 'Authentication failed, please check your username and password. (use "tj" and "foobar")';
-			res.redirect('/login');
+			res.render('login',{
+				error: "Authentication failed, please check your username and password."
+			});
 		} 
 		else {
-			//if (req.body.password === user.password) {
+			if (req.body.password === doc[0].password) {
 				// Regenerate session when signing in
 				// to prevent fixation
 				req.session.regenerate(function(){
@@ -53,15 +64,44 @@ router.post('/login', function(req, res){
 					// in the session store to be retrieved,
 					// or in this case the entire user object
 					req.session.user = doc[0].name;
-					console.log("req.session.user", req.session.user);
+
 					req.session.success = 'Authenticated as ' + req.session.user + ' click to <a href="/logout">logout</a>. '
 					+ ' You may now access <a href="/restricted">/restricted</a>.';
 					res.redirect('/');
 				});
-			//}
-			//else {
-			//	res.render('login.jade', { error: 'Invalid email or password.' });
-			//}
+			}
+			else {
+				res.render('login', { error: 'Invalid email or password.' });
+			}
+		}
+	});
+
+});
+
+// Register User endpoint : Redirect to Login page
+router.get('/signup', function (req, res) {
+	res.render('signup');
+});
+
+// Register User endpoint : Redirect to Login page
+router.post('/signup', function (req, res) {
+	
+	let data = {
+		name: 			req.body.userName,
+		email: 			req.body.userEmail,
+		contactNo: 		req.body.userPhone,
+		password: 		req.body.userPassword,
+		isAdmin:		false,
+		dateCreated:	new Date().getTime()
+	};
+
+	db.snippets.insert(data, function(err, newDoc){
+		if(err) {
+			res.render('signup', {message: err});
+			//res.send({"error": err});
+		} else {
+			res.render('signup', {message: 'Thank you for registering. Please <a href="/login">signin</a> to your account.'});
+			//res.send({"user" : newDoc});
 		}
 	});
 

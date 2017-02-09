@@ -7,7 +7,7 @@
 
 const router 		= require('express').Router(),
 	  path 			= require('path'),
-	  UserModel		= require('./model'), 	// Load Database and Related Methods
+	  UserModel		= require('./user.model'), 	// Load Database and Related Methods
 	  Handlebars	= require('handlebars'),
 	  fs			= require('fs');
 
@@ -27,9 +27,8 @@ router.use(function (req, res, next) {
 //==============================================
 
 router.get('/', function(req, res) {
-	console.log("Inside User Router :", __dirname + './index.html', path.join(__dirname, './index.html'))
-    res.sendFile(path.join(__dirname, './index.html'), function(){
-		console.log("Sending Users file..");
+    res.sendFile(path.join(__dirname, './users.html'), function(){
+		console.log("Sending Users HTML file..");
 	});
 });
 

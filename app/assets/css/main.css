@@ -1,7 +1,5 @@
 html {
 	height: 100%;
-	background-image: url(../images/02-cup-window.jpg);
-	background-size: cover;
 }
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -12,12 +10,34 @@ body {
 	width: 80%;
 	margin: 0 auto;
 }
+.full-bg {
+	position: fixed;
+	z-index: -1;
+	top:0;
+	left:0;
+	bottom:0; 
+	right:0;
+	background-image: url(../images/16.jpg);
+	background-size: cover;
+}
+.c-login, .c-register {
+	background-color: rgba(0,0,0,0.3);
+}
 .c-user-form {
 	margin: 0 auto;
 	margin-bottom: 2em;
 	background-color: #FFF;
 	box-shadow: 1px 0px 20px 4px rgba(0,0,0,0.2);
-	width: 300px;
+	width: 400px;
+}
+.c-user-form__title {
+	font-weight: 300;
+	color: #CCC;
+    background-color: #323a45;
+    padding: 0.2em 1em;
+}
+.c-user-form__form {
+	padding: 2em;
 }
 .c-user-form label {
     display: block;
@@ -80,20 +100,24 @@ header {
 /**
  * BUTTONS
  */
-.btn, button { 
+.btn, button {
+	font-family: 'Open Sans', sans-serif;
 	display: inline-block;
 	line-height: normal;	
 	border: 0px solid #1577b9;
 	border-radius: 3px;
+	text-transform: uppercase;
 }
 .btn-small {
 	padding: 5px 15px;
 }
 .btn-medium {
 	padding: 10px 20px;
+	font-size: 15px;
 }
 .btn-large {
 	padding: 15px 25px;
+	font-size: 18px;
 }
 .btn-primary {
 	border: 1px solid #3498db;
@@ -124,8 +148,11 @@ a {
 }
 h3 { margin: 0;}
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
+	font-family: 'Open Sans', sans-serif;
 	width: 100%;
 	padding: 10px;
+	border: 1px solid #ccc;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1) inset;
 }
 .form-group { padding: 5px 0;}
 /**
@@ -139,6 +166,12 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
 .fr {
 	float: right;
 }
+.fh {
+	height: 100vh;
+}
+.tu {
+	text-transform: uppercase;
+}
 .cf:before,
 .cf:after {
     content: " "; /* 1 */
@@ -150,9 +183,9 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
 }
 .c-flex-container { 
 	display: flex;
-	flex-wrap: wrap;
-	height: 100vh;
 	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 }
 .c-flex-container__item {flex-grow: 0;}
 .grd1 {
