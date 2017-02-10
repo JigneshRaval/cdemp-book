@@ -34,6 +34,17 @@ router.get('/', function(req, res) {
 
 // GET ALL USER :: Send Response
 //==============================================
+//router.get('/all', UserModel.findAll); // Put this in user.router.js
+// Put this in Controller or Model.js
+/*
+exports.findAll = function(req, res){
+  res.send([{
+    "id": 1,
+    "name": "Max",
+    "band": "Maximum Pain",
+    "instrument": "guitar"
+  }]);
+};*/
 
 router.get('/all', function(req, res) {
 	UserModel.getAll(req.query.searchTerm, function(users){
