@@ -20,28 +20,6 @@ router.get('/', function (req, res) {
 	}	
 });
 
-// Login endpoint
-router.get('/login', function (req, res) {
-	console.log("GET Login -------->", req.session);
-	if (req.session && req.session.user) {
-		res.redirect('/users');
-	}
-	else {
-		// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
-		res.render('login',{
-			body : "<p>Test Body</p>", 
-			data : {"name":"hiren"}, 
-			error: ""
-		});
-
-		// Use response.sendFile when you are only using pure HTML file instead of 
-		// any Templating Engine listed above
-		/*res.sendFile(path.join(__dirname, './login.html'), function(){
-			console.log("Sending Login file..");
-		});*/
-	}	
-});
-
 // TODO : Two things are not working 
 // 1. After Login page is not redirecting to USERS page
 // 2. User is not passing into authenticate function : FIXED by wrapping logic into DB query
@@ -76,6 +54,28 @@ router.post('/login', function(req, res){
 		}
 	});
 
+});
+
+// Login endpoint
+router.get('/login', function (req, res) {
+	console.log("GET Login -------->", req.session);
+	if (req.session && req.session.user) {
+		res.redirect('/users');
+	}
+	else {
+		// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
+		res.render('login',{
+			body : "<p>Test Body</p>", 
+			data : {"name":"hiren"}, 
+			error: ""
+		});
+
+		// Use response.sendFile when you are only using pure HTML file instead of 
+		// any Templating Engine listed above
+		/*res.sendFile(path.join(__dirname, './login.html'), function(){
+			console.log("Sending Login file..");
+		});*/
+	}	
 });
 
 // Register User endpoint : Redirect to Login page
