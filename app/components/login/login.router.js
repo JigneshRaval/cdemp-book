@@ -30,7 +30,7 @@ router.post('/login', function(req, res){
 		if (doc.length === 0 || !doc) {
 			req.session.error = 'Authentication failed, please check your username and password. (use "tj" and "foobar")';
 			res.render('login',{
-				error: "Authentication failed, please check your username and password."
+				message: '<p class="alert alert-error">Authentication failed, please check your username and password.</p>'
 			});
 		} 
 		else {
@@ -49,7 +49,7 @@ router.post('/login', function(req, res){
 				});
 			}
 			else {
-				res.render('login', { error: 'Invalid email or password.' });
+				res.render('login', { message: '<p class="alert alert-error">Invalid email or password.</p>' });
 			}
 		}
 	});
@@ -65,9 +65,7 @@ router.get('/login', function (req, res) {
 	else {
 		// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
 		res.render('login',{
-			body : "<p>Test Body</p>", 
-			data : {"name":"hiren"}, 
-			error: ""
+			message: ''
 		});
 
 		// Use response.sendFile when you are only using pure HTML file instead of 
@@ -79,32 +77,23 @@ router.get('/login', function (req, res) {
 });
 
 // Register User endpoint : Redirect to Login page
-router.get('/signup', function (req, res) {
-	res.render('signup');
-});
-
-// Register User endpoint : Redirect to Login page
 router.post('/signup', function (req, res) {
-	
-	let data = {
-		name: 			req.body.userName,
-		email: 			req.body.userEmail,
-		contactNo: 		req.body.userPhone,
-		password: 		req.body.userPassword,
-		isAdmin:		false,
-		dateCreated:	new Date().getTime()
-	};
 
-	db.snippets.insert(data, function(err, newDoc){
+	db.snippets.insert(req.body, function(err, newDoc){
 		if(err) {
-			res.render('signup', {message: err});
-			//res.send({"error": err});
+			//res.render('signup', {message: err});
+			res.send({"message": err});
 		} else {
-			res.render('signup', {message: 'Thank you for registering. Please <a href="/login">signin</a> to your account.'});
-			//res.send({"user" : newDoc});
+			//res.render('signup', {message: 'Thank you for registering. Please <a href="/login">signin</a> to your account.'});
+			res.send({"message" : 'Thank you for registering. Please <a href="/login">signin</a> to your account.'});
 		}
 	});
 
+});
+
+// Register User endpoint : Redirect to Login page
+router.get('/signup', function (req, res) {
+	res.render('signup');
 });
 
 // Logout endpoint : Redirect to Login page

@@ -17,7 +17,7 @@
 			<h1 class="tc c-user-form__title">Sign In</h1>
 			
 			<form id="addSnippetform" class="c-user-form__form" method="POST" action="/login">
-				<p>Error: #error#</p>
+				#message#
 				<div class="form-group">
 					<label for="userId">User Name</label>
 					<input type="text" name="username" class="form-control" id="userId" placeholder="User ID or Email" required/>

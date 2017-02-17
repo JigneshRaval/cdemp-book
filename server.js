@@ -24,12 +24,6 @@ app.use(session({
 // ==============================================
 
 app.engine('tpl', function (filePath, options, callback) { // define the template engine
-
-	console.log("filePath :", filePath);
-	for(var option in options) {
-		
-	}
-
 	fs.readFile(filePath, function (err, content) {
 		if (err) return callback(err)
 		// this is an extremely simple template engine

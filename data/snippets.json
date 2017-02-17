@@ -16,3 +16,7 @@
 {"name":"jignesh.raval","email":"jignesh.raval@gmail.com","contactNo":"1234567897","password":"Test123","isAdmin":false,"dateCreated":1486655800761,"_id":"wRPzX6liuTjWAwBu"}
 {"name":"jignesh.raval","email":"jignesh.raval@gmail.com","contactNo":"1234567890","password":"Cignex@123","isAdmin":false,"dateCreated":1486653658505,"_id":"zYVs0fHY5QTp4x7y"}
 {"$$indexCreated":{"fieldName":"name","unique":false,"sparse":false}}
+{"name":"hiren.patel","email":"hiren.patel@cignex.com","contactNo":"1245781212","password":"test","isAdmin":"false","dateCreated":"1487343282035","_id":"q1TA91PO8GSe3aJr"}
+{"name":"hiren.patel2","email":"hiren.patel2@cignex.com","contactNo":"1245781212","password":"test","isAdmin":"false","dateCreated":"1487343521053","_id":"xSQu1Wc4zQS6EsxE"}
+{"name":"sfsffafsafa","email":"dffsfs@gmail.com","contactNo":"1233453535","password":"test","isAdmin":"false","dateCreated":"1487343611101","_id":"VOosm1qLZNdP5E3d"}
+{"name":"sfsffafsafa","email":"ssdfsfsf@gmail.com","contactNo":"12345678","password":"sdsf","isAdmin":"false","dateCreated":"1487343661255","_id":"pcrAkqm3yurzbpQc"}

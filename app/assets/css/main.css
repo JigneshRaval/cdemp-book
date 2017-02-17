@@ -195,3 +195,16 @@ background: -webkit-radial-gradient(center, ellipse cover, #e570e7 0%,#7267ea 10
 background: radial-gradient(ellipse at center, #e570e7 0%,#7267ea 100%);
 background-repeat: no-repeat;
 }
+.alert { padding: 5px; margin-top: 5px; margin-bottom: 5px;}
+.alert-error {
+	background: #fa6a64;
+    color: #fff;
+    border: 1px solid #D05651;
+	text-align: center;
+}
+.alert-success {
+	background: green;
+    color: #fff;
+    border: 1px solid green;
+	text-align: center;
+}

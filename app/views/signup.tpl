@@ -15,8 +15,10 @@
 	<div class="c-register c-flex-container fh">
 		<div class="c-user-form c-flex-container__item">
 			<h1 class="tc c-user-form__title">Sign Up</h1>
-
 			<form id="createUserForm" class="c-user-form__form" method="POST" action="/signup">
+				<div class="c-laert c-flex-container__item alert alert-success" style="color: #FFF;">
+					<p class="signup-alert"></p>
+				</div>
 				<div class="form-group">
 					<label for="userId">User Name</label>
 					<input type="text" name="userName" class="form-control" id="userName" placeholder="User ID or Email" required/>
@@ -41,14 +43,11 @@
 		<div class="c-flex-container__item tu" style="color: #FFF;">
 			<p>Already have an account? <a href="/login"  style="color: #FFF;">Signin</a></p>
 		</div>
-		<div class="c-laert c-flex-container__item" style="color: #FFF;">
-			<p>#message#</p>
-		</div>
 	</div>
 	<!--# END : Login Form #-->
 	
 	<script src="app/assets/build/scripts/script.js"></script>
-	<!--<script src="app/components/login/login-controller.js"></script>-->
+	<script src="app/components/login/login-controller.js"></script>
 
 </body>
 
