@@ -14,7 +14,21 @@ const Handlebars	= require('handlebars');
 //=========================================
 
 const UserModel = (function(){
-	
+	function _formatData(docs) {
+		var newArray = [];
+
+		for(var i =0; i < docs.length; i++) {
+			var obj = {
+				"name" : docs[i].name,
+				"email": docs[i].email,
+				"contactNo" : docs[i].contactNo,
+				"id": docs[i]._id
+			}
+			newArray.push(obj);
+		}
+		return newArray;
+	};
+
 	// RENDER USER LISTING PAGE AFTER LOGIN
 	var renderUsersListingPage = function(req, res){
 		res.sendFile(path.join(__dirname, './users.html'), function(){
@@ -24,26 +38,32 @@ const UserModel = (function(){
 
 	// GET ALL USER FROM DB
 	var getAll = function(req, res) {
-		if(req.body.searchTerm) {
-			var searchTermRegex = new RegExp(searchTerm, 'i');
-			db.snippets.find({name : searchTermRegex}).sort({ dateCreated: -1 }).exec(function(err, docs){				
-				res.send({"users" : docs});
+		if(req.query.searchTerm) {			
+			
+			var searchTermRegex = new RegExp(req.query.searchTerm, 'ig');
+			var searchBy = req.query.searchBy;
+
+			db.snippets.find({searchBy : searchTermRegex}).sort({ dateCreated: -1 }).exec(function(err, docs){
+				var data = _formatData(docs);
+				res.send({"users" : data});
 			});
 		}
 		else {
-			db.snippets.find({}).sort({ dateCreated: -1 }).exec(function(err, docs){				
-				res.send({"users" : docs});				
+			db.snippets.find({}).sort({ dateCreated: -1 }).exec(function(err, docs){
+				var data = _formatData(docs);
+				res.send({"users" : data});				
 			});
 		}		
 	};
-
+	
 	// GET SINGLE USER FROM DB
 	var getSingleUser = function(req, res) {
 		db.snippets.find({_id : req.params.id}, function(err, doc){
 			// Sending Data From SERVER using Handlebars
 			fs.readFile(path.join(__dirname, '/single-user.hbs'), 'utf-8', function(error, source){
 				var template = Handlebars.compile(source); 	// Get HTML by reading .hbs file
-				var html = template(doc[0]); 					// Merge HTML with DATA
+				var data = _formatData(doc);
+				var html = template(data[0]); 					// Merge HTML with DATA
 				res.send(html); 							// Send Merged HTML files to client
 			});
 		});

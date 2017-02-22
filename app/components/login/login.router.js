@@ -45,7 +45,9 @@ router.post('/login', function(req, res){
 
 					req.session.success = 'Authenticated as ' + req.session.user + ' click to <a href="/logout">logout</a>. '
 					+ ' You may now access <a href="/restricted">/restricted</a>.';
-					res.redirect('/');
+					setTimeout(function(){
+						res.redirect('/');
+					}, 2000);
 				});
 			}
 			else {

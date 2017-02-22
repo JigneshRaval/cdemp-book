@@ -14,8 +14,8 @@ var LoginModule = (function($) {
 		// get the form data
 		// there are many ways to get this data using jQuery (you can use the class or id also)
 		var formData = {
-			'username': $('input[name=userId]').val(),
-			'password': $('input[name=userPassword]').val()
+			'username': $('input[name=username]').val(),
+			'password': $('input[name=password]').val()
 		};
 
 		// process the form
@@ -29,7 +29,7 @@ var LoginModule = (function($) {
 		// using the done promise callback
 		.done(function(data) {
 			console.log("DATA :", data)
-			_bindTemplate("#entry-template", data.user, '#sample-data');
+			//_bindTemplate("#entry-template", data.user, '#sample-data');
 		});
 	};
 
@@ -72,7 +72,7 @@ var LoginModule = (function($) {
 })(jQuery);
 
 $(document).ready(function() {
-	$('#addSnippetform').submit(function(event) {
+	$('#loginForm').submit(function(event) {
 		// stop the form from submitting the normal way and refreshing the page
 		event.preventDefault();
 		LoginModule.loginUser();

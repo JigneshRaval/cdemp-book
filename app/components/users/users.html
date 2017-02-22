@@ -23,21 +23,22 @@
 
 	<!-- concatenate and minify for production -->
 	<link rel="stylesheet" href="app/assets/build/styles/styles.css" />
+	<link rel="stylesheet" href="app/assets/css/ionicons.css" />
 	<link rel="stylesheet" href="app/assets/css/main.css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" />
 </head>
 
 <body>
+	<div class="full-bg"></div>
 	<header>
-		<div class="container-fixed cf">
-			<a href="/logout" class="btn btn-small fr">Logout</a>
+		<div class="container-fixed cf c-header">
+			<strong>EMPBOOK</strong>
 			<input type="text" value="" name="searchUser" id="searchUser" placeholder="Search user by Name" />
+			<a href="/logout" class="btn btn-small tr">Logout</a>
 		</div>
 	</header>
 
-	<div class="main-body">
-		<h1>Employee List</h1>
-
+	<div class="main-body"><i class="icon ion-trash-a"></i>
 		<div id="sample-data">
 
 		</div>
@@ -56,11 +57,14 @@
 				</div>
 				<div class="c-flex-container__item" style="width: 70%;">
 					<h3 class="c-user-list__item__name">{{name}}</h3>
-					<strong>M: </strong>{{phone}} | <strong>E: </strong>{{email}}
+					{{#if contactNo}}
+					<strong>M: </strong>{{contactNo}} | 
+					{{/if}}
+					<strong>E: </strong>{{email}}
 				</div>
 				<div class="c-flex-container__item" style="width: 20%;">
-					<a href="/users/{{_id}}" class="[ btn btn-small btn-primary ] view-detail" data-user-id="{{_id}}">View Detail</a>
-					<a href="javascript:;" class="[ btn btn-small btn-primary ] delete-user" data-user-id="{{_id}}">Delete</a>
+					<a href="/users/{{id}}" class="[ btn btn-small btn-primary ] view-detail" data-user-id="{{id}}">View Detail</a>
+					<a href="javascript:;" class="[ btn btn-small btn-primary ] delete-user" data-user-id="{{id}}"><i class="icon ion-trash-a"></i> Delete</a>
 				</div>
 			</li>
 			{{/each}}
