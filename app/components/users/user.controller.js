@@ -74,10 +74,41 @@ var UsersModule = (function($) {
 		});
 	};
 	
+
+
+	// REMOVE USER
+	function uploadImage() {
+		console.log('processForm');
+		var $f1 = $('[name="upload_avatar"]');
+		var formData = new FormData();
+
+		if($f1.val()) formData.append('file1', $f1.get(0).files[0]);
+
+
+		var request = new XMLHttpRequest();
+		request.open('POST', '/users/upload');
+		request.send(formData);
+		
+		request.onload = function(e) {
+			console.log('Request Status', request.status);
+		};
+		/*$.ajax({
+			type: 'POST',
+			url: '/users/upload',
+			data : $('[name="upload_avatar"]').val(),
+			encode: true
+		})
+		// using the done promise callback
+		.done(function(data) {
+			console.log("User Deleted with ID :", id, data);
+		});*/
+	};
+
 	return {
 		getAllUsers : getAllUsers,
 		removeUser: removeUser,
-		findUser: findUser
+		findUser: findUser,
+		uploadImage: uploadImage
 	}
 	
 })(jQuery);
@@ -90,6 +121,13 @@ $(document).ready(function() {
 		var id= $(this).data('user-id');
 		UsersModule.removeUser(id);
 		UsersModule.getAllUsers();
+	});
+
+	$('#formUploadAvatar').submit(function(event) {
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
+		UsersModule.uploadImage();
+		this.reset();
 	});
 
 });

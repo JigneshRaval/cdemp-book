@@ -21,13 +21,13 @@
 				#message#
 				<div style="padding: 2em 0">
 					<div class="form-group">
-					<label for="userId">User Name</label>
-					<input type="text" name="username" class="form-control" id="userId" placeholder="User ID" required/>
-				</div>
-				<div class="form-group">
-					<label for="userPassword">Password</label>
-					<input type="password" name="password" class="form-control" id="userPassword" placeholder="Password" required/>
-				</div>
+						<label for="userId">User Name</label>
+						<input type="text" name="username" class="form-control" id="userId" placeholder="User ID" required/>
+					</div>
+					<div class="form-group">
+						<label for="userPassword">Password</label>
+						<input type="password" name="password" class="form-control" id="userPassword" placeholder="Password" required/>
+					</div>
 				</div>
 				<button type="submit" class="btn btn-large grd2-b btn-full" id="submit">Login</button>
 			</form>

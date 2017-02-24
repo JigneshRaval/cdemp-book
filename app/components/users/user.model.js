@@ -31,9 +31,7 @@ const UserModel = (function(){
 
 	// RENDER USER LISTING PAGE AFTER LOGIN
 	var renderUsersListingPage = function(req, res){
-		res.sendFile(path.join(__dirname, './users.html'), function(){
-			console.log("Sending Users HTML file..");
-		});
+		res.sendFile(path.join(__dirname, './users.html'));
 	};
 
 	// GET ALL USER FROM DB
@@ -93,6 +91,11 @@ const UserModel = (function(){
 		});
 	};
 
+	var uploadImage = function(req, res) {
+		console.log(req.file); //form files
+		res.status(204).end();
+	};
+
 	// Return all Public Methods
 	return {
 		renderUsersListingPage: renderUsersListingPage,
@@ -100,7 +103,8 @@ const UserModel = (function(){
 		createUser		: createUser,
 		getSingleUser	: getSingleUser,
 		removeUser		: removeUser,
-		findUser		: findUser
+		findUser		: findUser,
+		uploadImage		: uploadImage
 	}
 	
 })();

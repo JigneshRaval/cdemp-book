@@ -71,7 +71,15 @@ body {
     display: inline-block;
     border-radius: 100%;
 	vertical-align: middle;
+	overflow: hidden;
+	position: relative;
 }
+.c-user-list li .c-user-image img {
+	position: absolute;
+    height: 130%;
+    left: -8px;
+    top: -10px;
+}	
 /**
  * USER PROFILE
  */
@@ -107,6 +115,11 @@ header {
 	border: 0px solid #1577b9;
 	border-radius: 3px;
 	text-transform: uppercase;
+	color: #333;
+	text-decoration: none;
+}
+.btn i, button i {
+	font-size: 24px;
 }
 .btn-small {
 	padding: 5px 15px;
@@ -121,6 +134,7 @@ header {
 }
 .btn-primary {
 	border: 1px solid #3498db;
+	color: #3498db;
 }
 .btn-primary:hover {
 	color: #FFF;
