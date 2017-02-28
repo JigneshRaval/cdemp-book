@@ -1,0 +1,88 @@
+<!--<div class="full-bg"></div>-->
+<header class="grd3">
+	<div class="container-fixed cf c-header">
+		<strong>EMPBOOK</strong>
+		<input type="text" value="" name="searchUser" id="searchUser" placeholder="Search user by Name" />
+		<div class="tr">
+			<div class="nav__item" style="position: relative">
+				<a href="/logout" class="btn btn-small">Logout</a>
+				<!-- START :: DROPDOWN -->
+				<nav class="dropdown">
+					<ul class="dropdown__list">
+						<li class="dropdown__item">
+							<a href="/courses/#course=angularjs" class="nav__link dropdown__link">
+								<div class="dropdown__link__info">
+									<h2 class="dropdown__link__title">AngularJS</h2>
+									<p>
+										AngularJS 1.5+ courses, the most comprehensive online courses on the web.
+									</p>
+								</div>
+							</a>
+						</li>
+						<li class="dropdown__item">
+							<a href="/courses/#course=angular" class="nav__link dropdown__link">
+								<div class="dropdown__link__info">
+									<h2 class="dropdown__link__title">Angular</h2>
+									<p>
+										Angular 2+ courses, build next generation applications, beginner to master.
+									</p>
+								</div>
+							</a>
+						</li>
+						<li class="dropdown__item">
+							<a href="/courses/#course=typescript" class="nav__link dropdown__link">
+								<div class="dropdown__link__info">
+									<h2 class="dropdown__link__title">Typescript</h2>
+									<p>
+										Learn TypeScript, use it with any framework to write scalable JavaScript.
+									</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<!-- END :: DROPDOWN -->
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="main-body">
+	<div id="sample-data">
+		
+	</div>
+</div>
+
+<script src="app/assets/build/scripts/script.js"></script>
+<script src="app/components/users/user.controller.js"></script>
+
+<!-- START : TEMPLATES -->
+<script id="entry-template" type="text/x-handlebars-template">
+	{{#if users}}
+		<ul class="c-user-list">
+		{{#each users}}
+		<li class="c-user-list__item c-flex-container">
+		<div class="c-flex-container__item tc">
+	<a href="javascript:;" class="c-user-image"><img src="app/assets/images/avatar-1.jpg"/></a>
+</div>
+<div class="c-flex-container__item" style="width: 70%;">
+	<h3 class="c-user-list__item__name">{{name}}</h3>
+	{{#if contactNo}}
+	<strong>M: </strong>{{contactNo}} | 
+	{{/if}}
+	<strong>E: </strong>{{email}}
+</div>
+<div class="c-flex-container__item">
+	<a href="/users/{{id}}" class="[ btn btn-small btn-primary ] view-detail" data-user-id="{{id}}"><i class="icon ion-eye"></i></a>
+	<a href="javascript:;" class="[ btn btn-small btn-primary ] delete-user" data-user-id="{{id}}"><i class="icon ion-trash-a"></i></a>
+</div>
+</li>
+{{/each}}
+</ul>
+{{else}}
+<div class="c-laert c-flex-container__item alert alert-success" style="color: #FFF;">
+	<p class="signup-alert">No user found</p>
+</div>
+{{/if}}
+</script>
+<!-- END : TEMPLATES -->

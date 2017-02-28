@@ -1,3 +1,6 @@
+// CLIENT SIDE :: Login Controller
+//=======================================================
+
 var LoginModule = (function($) {
 	// PRIVATE METHODS
 	//=======================================

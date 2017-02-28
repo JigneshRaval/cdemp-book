@@ -8,7 +8,11 @@
 const router 		= require('express').Router(),
 	  path 			= require('path'),
 	  db			= require('../../config/db.config'),
+	  fs			= require('fs'),
+	  Handlebars	= require('handlebars'),
+	  UtilsModule	= require('../utils'),
       session		= require('express-session');
+
 
 router.get('/', function (req, res) {
 	console.log("Login GET / Route -------->", req.session);
@@ -16,7 +20,24 @@ router.get('/', function (req, res) {
 		res.redirect('/users');
 	}
 	else {
-		res.redirect('/login');		
+		res.redirect('/login');
+	}	
+});
+
+// GET LOGIN PAGE ( Login endpoint )
+//==================================================
+
+router.get('/login', function (req, res) {
+	console.log("GET Login -------->", req.session);
+	if (req.session && req.session.user) {
+		res.redirect('/users');
+	}
+	else {
+		// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
+		let data = { message : "", type : ''};
+		UtilsModule.renderHBTemplates('../views/login.hbs', data, function(output){
+			res.render('index', { body : output}); 							// Send Merged HTML files to client
+		});
 	}	
 });
 
@@ -28,9 +49,12 @@ router.post('/login', function(req, res){
 
 	db.snippets.find({"name" : req.body.username}, function(err, doc){
 		if (doc.length === 0 || !doc) {
-			req.session.error = 'Authentication failed, please check your username and password. (use "tj" and "foobar")';
-			res.render('login',{
-				message: '<p class="alert alert-error">Authentication failed, please check your username and password.</p>'
+			req.session.error = 'Authentication failed, please check your username and password.';
+
+			// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
+			let data = { message : "Authentication failed, please check your username and password.", type : 'error'};
+			UtilsModule.renderHBTemplates('../views/login.hbs', data, function(output){
+				res.render('index', { body : output}); 							// Send Merged HTML files to client
 			});
 		} 
 		else {
@@ -45,40 +69,25 @@ router.post('/login', function(req, res){
 
 					req.session.success = 'Authenticated as ' + req.session.user + ' click to <a href="/logout">logout</a>. '
 					+ ' You may now access <a href="/restricted">/restricted</a>.';
-					setTimeout(function(){
-						res.redirect('/');
-					}, 2000);
+					res.redirect('/');
 				});
 			}
 			else {
-				res.render('login', { message: '<p class="alert alert-error">Invalid email or password.</p>' });
+				//res.render('login', { message: '<p class="alert alert-error">Invalid email or password.</p>' });
+				// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
+				let data = { message : "Your password is invalid. Please try again.", type : 'error'};
+				UtilsModule.renderHBTemplates('../views/login.hbs', data, function(output){
+					res.render('index', { body : output}); 							// Send Merged HTML files to client
+				});
 			}
 		}
 	});
 
 });
 
-// Login endpoint
-router.get('/login', function (req, res) {
-	console.log("GET Login -------->", req.session);
-	if (req.session && req.session.user) {
-		res.redirect('/users');
-	}
-	else {
-		// Use response.render when you are using any Templating Engine like Jade, Express-Handlebar etc...
-		res.render('login',{
-			message: ''
-		});
-
-		// Use response.sendFile when you are only using pure HTML file instead of 
-		// any Templating Engine listed above
-		/*res.sendFile(path.join(__dirname, './login.html'), function(){
-			console.log("Sending Login file..");
-		});*/
-	}	
-});
-
 // Register User endpoint : Redirect to Login page
+//=======================================================
+
 router.post('/signup', function (req, res) {
 
 	db.snippets.insert(req.body, function(err, newDoc){
@@ -94,11 +103,18 @@ router.post('/signup', function (req, res) {
 });
 
 // Register User endpoint : Redirect to Login page
+//=======================================================
+
 router.get('/signup', function (req, res) {
-	res.render('signup');
+	//res.render('signup');
+	UtilsModule.renderHBTemplates('../views/signup.hbs', null, function(output){
+		res.render('index', { body : output});	// Send Merged HTML files to client
+	});
 });
 
 // Logout endpoint : Redirect to Login page
+//=======================================================
+
 router.get('/logout', function (req, res) {
 	// destroy the user's session to log them out
 	// will be re-created next request

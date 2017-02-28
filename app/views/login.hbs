@@ -1,0 +1,31 @@
+	<!--# START : Login Form #-->
+	<div class="c-login c-flex-container fh">
+		<h1 class="c-user-form__title tc">Welcome</h1>
+		<p class="tc">Login to get started!</p>
+		
+		<div class="c-user-form c-flex-container__item">
+			<form id="loginForm" class="c-user-form__form" method="POST" action="/login">
+				{{#if message}}
+					<p class="c-alert c-alert--{{type}}">{{message}}</p>
+				{{/if}}
+				
+				<div style="padding: 0 0 2em 0">
+					<div class="form-group">
+						<label for="userId">User Name</label>
+						<input type="text" name="username" class="form-control" id="userId" placeholder="User ID" required/>
+					</div>
+					<div class="form-group">
+						<label for="userPassword">Password</label>
+						<input type="password" name="password" class="form-control" id="userPassword" placeholder="Password" required/>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-large btn-dark btn-full" id="submit">Login</button>
+			</form>
+
+			<p style="background-color: #e8eaf6; padding: 2em;text-align: center; border-top: 1px solid #cccfe2;">First time here? <a href="/signup">Create your account</a></p>
+		</div>
+	</div>
+	<!--# END : Login Form #-->
+
+	<script src="app/assets/build/scripts/script.js"></script>
+	<!--<script src="app/components/login/login-controller.js"></script>-->

@@ -7,6 +7,7 @@
 const db 			= require('../../config/db.config'); // Load Database File
 const path			= require('path');
 const fs			= require('fs');
+const UtilsModule	= require('../utils');
 const Handlebars	= require('handlebars');
 
 
@@ -31,17 +32,19 @@ const UserModel = (function(){
 
 	// RENDER USER LISTING PAGE AFTER LOGIN
 	var renderUsersListingPage = function(req, res){
-		res.sendFile(path.join(__dirname, './users.html'));
+		UtilsModule.renderHBTemplates('../views/users.hbs', null, function(output){
+			res.render('index', { body : output}); 							// Send Merged HTML files to client
+		});
 	};
 
 	// GET ALL USER FROM DB
 	var getAll = function(req, res) {
 		if(req.query.searchTerm) {			
 			
-			var searchTermRegex = new RegExp(req.query.searchTerm, 'ig');
+			var searchTermRegex = new RegExp(req.query.searchTerm, '');
 			var searchBy = req.query.searchBy;
 
-			db.snippets.find({searchBy : searchTermRegex}).sort({ dateCreated: -1 }).exec(function(err, docs){
+			db.snippets.find({ "name" : searchTermRegex}).sort({ dateCreated: -1 }).exec(function(err, docs){
 				var data = _formatData(docs);
 				res.send({"users" : data});
 			});
@@ -58,7 +61,7 @@ const UserModel = (function(){
 	var getSingleUser = function(req, res) {
 		db.snippets.find({_id : req.params.id}, function(err, doc){
 			// Sending Data From SERVER using Handlebars
-			fs.readFile(path.join(__dirname, '/single-user.hbs'), 'utf-8', function(error, source){
+			fs.readFile(path.join(__dirname, '../../views/profile.hbs'), 'utf-8', function(error, source){
 				var template = Handlebars.compile(source); 	// Get HTML by reading .hbs file
 				var data = _formatData(doc);
 				var html = template(data[0]); 					// Merge HTML with DATA

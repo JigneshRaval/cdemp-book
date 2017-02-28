@@ -46,26 +46,5 @@ router.get('/removeUser/:id', UserModel.removeUser);
 
 // UPLOAD USER IMAGE :: 
 //==============================================
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './app/uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
-});
-
-var upload = multer({ dest: './app/uploads/' }).array('upload_avatar', 2);
-
-router.post('/upload', function(req, res){
-	console.log(req.body, req.file); //form files
-    upload(req,res,function(err) {
-		
-        if(err) {
-            return res.end("Error uploading file.");
-        }
-        res.end("File is uploaded");
-    });    
-});
 
 module.exports = router;

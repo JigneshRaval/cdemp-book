@@ -37,10 +37,9 @@ app.engine('tpl', function (filePath, options, callback) { // define the templat
 	})
 });
 
-app.set('views', ['./app/views', './app/components/login']) // specify the views directory
+app.set('views', ['./app/layout', './app/views', './app/components/login']) // specify the views directory
 app.set('view engine', 'tpl') // register the template engine
 app.set("view options", {layout: false});
-app.use(express.static(__dirname));
 
 // ROUTES
 // ==============================================
@@ -50,6 +49,8 @@ app.use('/', require('./app/components/login/login.router'));
 
 // Import [user.router.js] and Apply router for Users
 app.use('/users', require('./app/components/users/user.router'));
+
+app.use(express.static(__dirname));
 
 // Handle 404
 app.use(function(req, res) {
