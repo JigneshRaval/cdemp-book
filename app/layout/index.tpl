@@ -19,17 +19,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Use Iconifyer to generate all the favicons and touch icons you need: http://iconifier.net -->
-	<link rel="shortcut icon" href="app/assets/images/favicon.ico" />
+	<link rel="shortcut icon" href="../app/assets/images/favicon.ico" />
+
+	<!-- Import other HTML files like Header, Footer etc. -->
+	<!--<link rel="import" href="../app/assets/imports/header.html" />-->
 
 	<!-- concatenate and minify for production -->
-	<link rel="stylesheet" href="app/assets/build/styles/styles.css" />
-	<link rel="stylesheet" href="app/assets/css/ionicons.css" />
-	<link rel="stylesheet" href="app/assets/css/main.css" />
+	<link rel="stylesheet" href="../app/assets/build/styles/styles.css" />
+	<link rel="stylesheet" href="../app/assets/css/reset.css" />
+	<link rel="stylesheet" href="../app/assets/css/ionicons.css" />
+	<link rel="stylesheet" href="../app/assets/css/main.css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 </head>
 
 <body class="grd2">
-    #body#
+
+    <!-- Data from the views folder will be appended here -->
+	#body#
+
 </body>
 
 </html>

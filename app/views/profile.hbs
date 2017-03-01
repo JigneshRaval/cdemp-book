@@ -1,11 +1,11 @@
-<!--<div class="full-bg"></div>-->
-<header class="grd3">
+<header class="" style="margin: 0;">
 	<div class="container-fixed cf c-header">
-		<strong>EMPBOOK</strong>
-		<input type="text" value="" name="searchUser" id="searchUser" placeholder="Search user by Name" />
+		<a href="/users"><strong>EMPBOOK</strong></a>
+		<input type="text" value="" name="searchUser" id="searchUser" placeholder="Search user by Name" class="no-border" />
 		<div class="tr">
 			<div class="nav__item" style="position: relative">
 				<a href="/logout" class="btn btn-small">Logout</a>
+				
 				<!-- START :: DROPDOWN -->
 				<nav class="dropdown">
 					<ul class="dropdown__list">
@@ -42,16 +42,124 @@
 					</ul>
 				</nav>
 				<!-- END :: DROPDOWN -->
+
 			</div>
 		</div>
 	</div>
 </header>
 
-<section class="user-profile">
-	<h3 class="user-profile__title">{{name}}</h3>
-	<div class="user-profile__detail">
-		<p><strong>Email : </strong>{{email}}</p>
-		<p><strong>Phone : </strong>{{contactNo}}</p>
-		<p class="tc"><a href="/users" class="btn btn-medium btn-primary" data-user-id="{{_id}}">Back To List View</a></p>
+<!-- START :: USER PROFILE SECTION -->
+<section class="c-user-profile">
+	
+	<div class="c-user-profile__header">
+		<div class="container-fixed c-flex-container c-flex-container--space-around">
+			<a href="javascript:;" class="c-user-image c-user-image--medium c-flex-container__item"><img src="../app/assets/images/avatar-2.jpg"/></a>
+			<div class="c-flex-container__item">
+				<p><strong>{{fullname}}</strong></p>
+				<p>{{designation}}</p>
+				<p>Todd is the owner and trainer at Ultimate Angular. JavaScript engineer and Google Developer Expert.</p>
+			</div>
+		</div>
 	</div>
+
+	<div class="container-fixed">
+		<div class="c-user-profile__detail" id="updated-profile">
+			<article class="c-user-profile__detail-contact">
+				<h3>Contact Detail</h3>
+				<p><strong>Email</strong>{{email}}</p>
+				<p><strong>Phone</strong>{{contactNo}}</p>
+				<p><strong>Designation</strong>{{designation}}</p>
+				<p><strong>Date of Joining</strong>{{DOJ}}</p>
+				<p><strong>Date of Birth</strong>{{DOB}}</p>
+				<p><strong>Hobbies</strong>{{hobbies}}</p>
+			</article>
+
+			<p class="tc">
+				<a href="/users" class="btn btn-medium btn-dark" data-user-id="{{id}}">Back To List View</a> 
+				<a href="javascript:;" class="btn btn-medium btn-primary btn-edit-profile" data-user-id="{{id}}">Edit Profile</a>
+			</p>
+		</div>
+
+		<div class="c-user-profile__detail hidden">
+			<article class="c-user-profile__detail-contact">
+				<h3>Contact Detail</h3>
+				<form id="updateUserProfileForm" class="c-user-form__form no-padding" method="POST" autocomplete="on" data-userid="{{id}}">
+					<div class="c-laert c-flex-container__item alert alert-success" style="color: #FFF;">
+						<p class="signup-alert"></p>
+					</div>
+					<div class="form-group">
+						<label for="userName">Name</label>
+						<input type="text" name="userName" class="form-control" id="userName" placeholder="FirstName LastName" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" required aria-required="true" autofocus value="{{fullname}}"/>
+						<span id="name-format" class="help">Format: firstname lastname</span>
+					</div>
+					<div class="form-group">
+						<label for="userEmail">Email Address</label>
+						<input type="email" name="userEmail" class="form-control" id="userEmail" placeholder="Ex.: user.name@example.com" required aria-required="true" value="{{email}}"/>
+					</div>
+					<div class="form-group">
+						<label for="userPhone">Contact Number</label>
+						<input type="tel" name="userPhone" class="form-control" id="userPhone" placeholder="+91 89525 55225" required aria-required="true" pattern="(\+91 [0-9]{10})" value="{{contactNo}}"/>
+					</div>
+					<div class="form-group">
+						<label for="userDesignation">Designation</label>
+						<input type="tel" name="userDesignation" class="form-control" id="userDesignation" placeholder="Designation" required aria-required="true" value="{{designation}}" />
+					</div>
+					<div class="form-group">
+						<label for="userDOJ">Date Of Joining</label>
+						<input type="date" name="userDOJ" class="form-control" id="userDOJ" placeholder="Date Of Joining" required aria-required="true" value="{{DOJ}}" />
+					</div>
+					<div class="form-group">
+						<label for="userDOB">Date of Birth</label>
+						<input type="date" name="userDOB" class="form-control" id="userDOB" placeholder="Date of Birth" required aria-required="true" value="{{DOB}}" />
+					</div>
+					<div class="form-group">
+						<label for="userHobbies">Hobbies</label>
+						<input type="tel" name="userHobbies" class="form-control" id="userHobbies" placeholder="Ex.: Reading, Swimming, Singging" required aria-required="true" value="{{hobbies}}"/>
+						<span id="name-format" class="help">Format: Use comma seperated values</span>
+					</div>
+
+					<div class="form-group tc">
+						<button type="submit" class="btn btn-medium btn-dark" id="submit">Save Profile</button>
+						<a href="javascript:;" class="btn btn-medium btn-primary btn-edit-profile" data-user-id="{{id}}">View Profile</a>
+					</div>
+				</form>
+			</article>
+
+		</div>
+		
+
+	</div>
+
 </section>
+<!-- END :: USER PROFILE SECTION -->
+
+<script src="../app/assets/build/scripts/script.js"></script>
+<script src="../app/components/users/user.controller.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.c-user-profile').on('click','.btn-edit-profile', function(){
+			$('.c-user-profile__detail').toggleClass('hidden');
+		});
+
+
+	});
+</script>
+
+<!-- START : TEMPLATES -->
+<script id="user-profile-template" type="text/x-handlebars-template">{{user}}={{this.email}}={{this.designation}}
+	<article class="c-user-profile__detail-contact">
+		<h3>Contact Detail</h3>
+		<p><strong>Email</strong>{{this.email}}</p>
+		<p><strong>Phone</strong>{{this.contactNo}}</p>
+		<p><strong>Designation</strong>{{this.designation}}</p>
+		<p><strong>Date of Joining</strong>{{this.DOJ}}</p>
+		<p><strong>Date of Birth</strong>{{this.DOB}}</p>
+		<p><strong>Hobbies</strong>{{this.hobbies}}</p>
+	</article>
+
+	<p class="tc">
+		<a href="/users" class="btn btn-medium btn-dark" data-user-id="{{id}}">Back To List View</a> 
+		<a href="javascript:;" class="btn btn-medium btn-primary btn-edit-profile" data-user-id="{{id}}">Edit Profile</a>
+	</p>
+</script>
+<!-- END : TEMPLATES -->

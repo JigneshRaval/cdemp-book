@@ -20,9 +20,14 @@ const UserModel = (function(){
 
 		for(var i =0; i < docs.length; i++) {
 			var obj = {
-				"name" : docs[i].name,
+				"name": docs[i].name,
+				"fullname": docs[i].fullname,
 				"email": docs[i].email,
-				"contactNo" : docs[i].contactNo,
+				"designation": docs[i].designation,
+				"contactNo": docs[i].contactNo,
+				"DOJ": docs[i].DOJ,
+				"DOB": docs[i].DOB,
+				"hobbies": docs[i].hobbies,
 				"id": docs[i]._id
 			}
 			newArray.push(obj);
@@ -65,18 +70,24 @@ const UserModel = (function(){
 				var template = Handlebars.compile(source); 	// Get HTML by reading .hbs file
 				var data = _formatData(doc);
 				var html = template(data[0]); 					// Merge HTML with DATA
-				res.send(html); 							// Send Merged HTML files to client
+				//res.send(html); 							// Send Merged HTML files to client
+				res.render('index', { body : html});
 			});
 		});
 	};
 
 	// CREATE NEW USER [ INSERT NEW USER RECORD TO DB]
-	var createUser = function(req, res) {
-		db.snippets.insert(req.body, function(err, newDoc){
+	var updateProfile = function (req, res) {
+		db.snippets.update({ _id: req.params.id }, { $set: req.body }, { upsert: true }, function (err, numAffected, affectedDocuments, upsert) {
+			console.log("affectedDocuments :", err, numAffected, affectedDocuments, upsert)
 			if(err) {
 				res.send({"error": err});
 			} else {
-				res.send({"user" : newDoc});
+				//res.send({"user" : newDoc});
+				db.snippets.find({ _id: req.params.id }, function (err, doc) {
+					var data = _formatData(doc);
+					res.send({ "user" : data[0], status : "OK" });
+				});
 			}
 		});
 	};
@@ -103,7 +114,7 @@ const UserModel = (function(){
 	return {
 		renderUsersListingPage: renderUsersListingPage,
 		getAll			: getAll,
-		createUser		: createUser,
+		updateProfile	: updateProfile,
 		getSingleUser	: getSingleUser,
 		removeUser		: removeUser,
 		findUser		: findUser,

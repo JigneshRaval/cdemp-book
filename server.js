@@ -40,6 +40,7 @@ app.engine('tpl', function (filePath, options, callback) { // define the templat
 app.set('views', ['./app/layout', './app/views', './app/components/login']) // specify the views directory
 app.set('view engine', 'tpl') // register the template engine
 app.set("view options", {layout: false});
+app.use(express.static(__dirname));
 
 // ROUTES
 // ==============================================
@@ -50,15 +51,13 @@ app.use('/', require('./app/components/login/login.router'));
 // Import [user.router.js] and Apply router for Users
 app.use('/users', require('./app/components/users/user.router'));
 
-app.use(express.static(__dirname));
-
-// Handle 404
+// Handle 404 Error
 app.use(function(req, res) {
 	res.status(400);
 	res.render('404', {body: '404: File Not Found', data: "Plese Go Back to Home page."});
 });
 
-// Handle 500
+// Handle 500 Error
 app.use(function(error, req, res, next) {
 	res.status(500);
 	res.render('500', {body :'500: Internal Server Error', data: error});

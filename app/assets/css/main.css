@@ -7,10 +7,7 @@ body {
 	line-height: 1.8;
 	color: #3c4a53;
 }
-.main-body {
-	width: 80%;
-	margin: 0 auto;
-}
+
 .full-bg {
 	position: fixed;
 	z-index: -1;
@@ -78,10 +75,8 @@ body {
 .c-user-list li .c-user-list__item__name {
 	font-size: 16px;
 }
-.c-user-list li .c-user-image {
+.c-user-image {
     background-color: #CCC;
-    width: 60px;
-    height: 60px;
     display: inline-block;
     border-radius: 100%;
 	vertical-align: middle;
@@ -89,39 +84,76 @@ body {
 	position: relative;
 	margin-right: 1em;
 }
-.c-user-list li .c-user-image img {
-	position: absolute;
-    height: 130%;
-    left: -8px;
+.c-user-image--small {
+	width: 60px;
+    height: 60px;
+}
+.c-user-image--medium {
+	width: 120px;
+    height: 120px;
+}
+.c-user-image--small img {
+    position: absolute;
+    height: 150%;
+    left: -16px;
     top: -10px;
-}	
+    width: 150%;
+	max-width: inherit;
+}
+.c-user-image--medium img {
+    position: absolute;
+    height: 150%;
+    left: -30px;
+    top: -20px;
+    width: 150%;
+    max-width: inherit;
+}
+
 /**
  * USER PROFILE
  */
-.user-profile { 
-	width: 400px; 
-	border: 1px solid #3498db; 
-	margin: 0 auto; 
-}
-.user-profile__title { 
-	margin: 0;
-	padding: 1em 1.5em; 
-	background-color: #3498db; 
-	color: #FFF; 
-}
-.user-profile__detail { 
-	padding: 1.5em; 
-}
-header {
+ header {
 	padding: 10px 5px;
 	background-color: #FFF;
 	/*box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);*/
 	margin-bottom: 4em;
 }
 .container-fixed {
-	width: 80%;
+	max-width: 1140px;
+    width: 94%;
 	margin: 0 auto;
 }
+ .container-fluid {
+    width: 100%;
+	margin: 0 auto;
+ }
+
+.c-user-profile { 
+	margin: 0 auto;
+}
+.c-user-profile__header {
+	background-image: linear-gradient(to right,#7b519f,#9e62c9);
+	padding: 8em 0;
+	color: #FFFFFF;
+}
+.c-user-profile__title { 
+	margin: 0;
+	padding: 1em 1.5em; 
+	background-color: #3498db; 
+	color: #FFF; 
+}
+.c-user-profile__detail {
+	margin: 2em 0;
+	padding: 2em;
+	background-color: #FFFFFF;
+	box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
+	/*border: 1px solid #cccfe2;*/
+	line-height: 2;
+	margin-top: -60px;
+}
+.c-user-profile__detail h3 { font-size: 1.5em; font-weight: 300; border-bottom: 1px solid #cccfe2; margin-bottom: 1em; padding: 1em 0; line-height: normal; }
+.c-user-profile__detail p { padding: 5px; }
+.c-user-profile__detail strong { display: inline-block; width: 14em; }
 /**
  * BUTTONS
  */
@@ -196,7 +228,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="tel
 	width: 100%;
 	padding: 10px;
 	border: 1px solid transparent;
-	border-bottom: 2px solid #EEE;
+	border-bottom: 2px solid #cccfe2;
 	font-size: 1.2em;
     /*box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1) inset;*/
 }
@@ -210,9 +242,52 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 	box-shadow: 0 0px 7px 0px rgba(0,0,0,0.2) inset;
 }
 .form-group { padding: 10px 0;}
-/**
- * UTILITY CLASSES
- */
+
+input:required {
+    
+}
+.help { display: none; font-style: italic;}
+input:focus + .help {
+    display:inline-block;
+}
+/* Removes the clear button from date inputs */
+input[type="date"]::-webkit-clear-button {
+    display: none;
+}
+
+/* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button { 
+    display: none;
+}
+
+/* Always display the drop down caret */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #2c3e50;
+}
+
+/* A few custom styles for date inputs */
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    color: #95a5a6;
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 18px;
+    border:1px solid #ecf0f1;
+    background:#ecf0f1;
+    padding:5px;
+    display: block !important;
+    visibility: visible !important;
+}
+
+input[type="date"], focus {
+    color: #95a5a6;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+/*==================================================
+	UTILITY CLASSES
+====================================================*/
 .tc { text-align: center; }
 .tr { text-align: right; }
 .fl { 
@@ -227,12 +302,17 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 .tu {
 	text-transform: uppercase;
 }
+.no-border, input.no-border, input.no-border:hover, input.no-border:focus {border: 0px solid;}
+.no-margin { margin: 0; }
+.no-padding { padding: 0; }
+.hidden { display: none; }
+/* CSS CLEARFIX
+------------------------------------------------------------*/
 .cf:before,
 .cf:after {
     content: " "; /* 1 */
     display: table; /* 2 */
 }
-
 .cf:after {
     clear: both;
 }
@@ -245,13 +325,20 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 .c-user-list .c-flex-container {
 	flex-direction: row;
 }
+.c-user-profile .c-flex-container {
+	flex-direction: row;
+}
 .c-flex-container__item {flex-grow: 0;}
+.c-flex-container--left {justify-content: flex-start;}
+.c-flex-container--right {justify-content: flex-end;}
+.c-flex-container--space-around {justify-content: space-around;}
+.c-flex-container--space-between {justify-content: space-between;}
+/* GRADIENTS
+------------------------------------------------------------*/
 .grd1 {
 	background: #e570e7;
-background: -moz-radial-gradient(center, ellipse cover, #e570e7 0%, #7267ea 100%);
-background: -webkit-radial-gradient(center, ellipse cover, #e570e7 0%,#7267ea 100%);
-background: radial-gradient(ellipse at center, #e570e7 0%,#7267ea 100%);
-background-repeat: no-repeat;
+	background: radial-gradient(ellipse at center, #e570e7 0%,#7267ea 100%);
+	background-repeat: no-repeat;
 }
 .grd2 {
 	/*background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%),
@@ -263,22 +350,22 @@ background-repeat: no-repeat;
 	color: #FFF;
 }
 .grd1-b {
-  border-left: 3px solid #3ACFD5;
-  border-right: 3px solid #3a4ed5;
-  background-position: 0 0, 0 100% ;
-  background-repeat: no-repeat;
-  background-size: 100% 3px;
-  background-color: #FFF;
-  background-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%), linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%);
+	border-left: 3px solid #3ACFD5;
+	border-right: 3px solid #3a4ed5;
+	background-position: 0 0, 0 100% ;
+	background-repeat: no-repeat;
+	background-size: 100% 3px;
+	background-color: #FFF;
+	background-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%), linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%);
 }
 .grd2-b {
-  border-left: 3px solid #e570e7;
-  border-right: 3px solid #7267ea;
-  background-position: 0 0, 0 100% ;
-  background-repeat: no-repeat;
-  background-size: 100% 3px;
-  background-color: #FFF;
-  background-image: linear-gradient(to right, #e570e7 0%, #7267ea 100%), linear-gradient(to right, #e570e7 0%, #7267ea 100%);
+	border-left: 3px solid #e570e7;
+	border-right: 3px solid #7267ea;
+	background-position: 0 0, 0 100% ;
+	background-repeat: no-repeat;
+	background-size: 100% 3px;
+	background-color: #FFF;
+	background-image: linear-gradient(to right, #e570e7 0%, #7267ea 100%), linear-gradient(to right, #e570e7 0%, #7267ea 100%);
 }
 
 .c-alert {

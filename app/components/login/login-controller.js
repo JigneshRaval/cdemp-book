@@ -64,7 +64,7 @@ var LoginModule = (function($) {
 		.done(function(data) {
 			console.log(data);
 			$('.signup-alert').html('<p>'+ data.message +'</p>')
-		});				
+		});
 	};
 
 	return {

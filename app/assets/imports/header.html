@@ -1,7 +1,6 @@
-<!--<div class="full-bg"></div>-->
-<header class="">
+<header class="grd3 doc">
 	<div class="container-fixed cf c-header">
-		<a href="/users"><strong>EMPBOOK</strong></a>
+		<strong>EMPBOOK</strong>
 		<input type="text" value="" name="searchUser" id="searchUser" placeholder="Search user by Name" class="no-border" />
 		<div class="tr">
 			<div class="nav__item" style="position: relative">
@@ -46,47 +45,3 @@
 		</div>
 	</div>
 </header>
-
-<div class="container-fixed main-body">
-	<div id="sample-data">
-		
-	</div>
-</div>
-
-<script src="app/assets/build/scripts/script.js"></script>
-<script src="app/components/users/user.controller.js"></script>
-<script>
-$(document).ready(function() {
-	UsersModule.getAllUsers();
-});
-</script>
-
-
-<!-- START : TEMPLATES -->
-<script id="entry-template" type="text/x-handlebars-template">
-	{{#if users}}
-	<ul class="c-user-list">
-		{{#each users}}
-		<li class="c-user-list__item c-flex-container">
-			<div class="c-flex-container__item tc">
-				<a href="javascript:;" class="c-user-image c-user-image--small"><img src="app/assets/images/avatar-1.jpg" /></a>
-			</div>
-			<div class="c-flex-container__item" style="width: 70%;">
-				<h3 class="c-user-list__item__name">{{name}}</h3>
-				{{#if contactNo}}<strong>M: </strong>{{contactNo}} | {{/if}}
-				{{#if email}}<strong>E: </strong>{{email}} {{/if}}
-			</div>
-			<div class="c-flex-container__item">
-				<a href="/users/{{id}}" class="[ btn btn-small btn-primary ] view-detail" data-user-id="{{id}}"><i class="icon ion-eye"></i></a>
-				<a href="javascript:;" class="[ btn btn-small btn-primary ] delete-user" data-user-id="{{id}}"><i class="icon ion-trash-a"></i></a>
-			</div>
-		</li>
-		{{/each}}
-	</ul>
-	{{else}}
-	<div class="c-alert c-alert--info c-flex-container__item" style="color: #FFF;">
-		<p class="signup-alert">No user found</p>
-	</div>
-	{{/if}}
-</script>
-<!-- END : TEMPLATES -->

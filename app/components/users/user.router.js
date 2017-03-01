@@ -38,7 +38,7 @@ router.get('/:id', UserModel.getSingleUser);
 
 // CREATE USER :: Send Response as JSON
 //==============================================
-router.post('/createUser', UserModel.createUser);
+router.post('/updateProfile/:id', UserModel.updateProfile);
 
 // REMOVE USER :: Send Response as JSON
 //==============================================
